@@ -1,0 +1,12 @@
+{{ if eq .Status "firing" -}}
+Status: <b>🔥 {{.Status | str_UpperCase}} 🔥</b>
+{{- end -}}
+{{ if eq .Status "resolved" -}}
+Status: <b>✅ {{.Status | str_UpperCase}} ✅</b>
+{{- end }}
+
+{{ range $index,$alert := .Alerts -}}
+{{- range $key,$val := $alert.Annotations }}
+    {{ $key }} = <code>{{ $val }}</code>
+{{- end }}
+{{ end -}}
